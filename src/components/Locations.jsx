@@ -125,7 +125,7 @@ const Locations = () => {
                 <div className="absolute top-3 right-3 z-10 drop-shadow-lg">
                   <div className="relative">
                     <img
-                      src="/public/badge-drop.jpeg"
+                      src="/hyperlaverie/badge-drop.jpeg"
                       alt="Drop Service"
                       className="w-16 h-16 rounded-[22px]"
                     />

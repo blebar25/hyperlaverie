@@ -15,7 +15,7 @@ const Footer = () => {
           {/* Logo et Description */}
           <div className="space-y-4">
             <a href="#" className="block">
-              <img src="/public/hyperlaverie-logo.png" alt="Hyperlaverie" className="h-16 mb-4" />
+              <img src="/hyperlaverie/hyperlaverie-logo.png" alt="Hyperlaverie" className="h-16 mb-4" />
             </a>
             <p className="text-gray-600 text-sm">
               Ici, on lave son linge sale en public.
