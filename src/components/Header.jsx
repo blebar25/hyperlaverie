@@ -24,7 +24,13 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center cursor-pointer">
-            <Link to="/">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
               <img 
                 src="/hyperlaverie-logo.png" 
                 alt="Hyperlaverie" 
@@ -32,20 +38,25 @@ const Header = () => {
                   isScrolled ? 'h-12' : 'h-16'
                 } w-auto`} 
               />
-            </Link>
+            </a>
           </div>
           <nav className="hidden md:flex space-x-8">
-            {['Services', 'Nos tarifs', 'Où nous trouver ?', 'Entrepreneur'].map((item, index) => (
-              <Link
-                key={index}
-                to={`#${item.toLowerCase().replace(/\s+/g, '-').replace(/[?]/g, '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')}`}
+            {[
+              { name: 'Nos services', href: '#nos-services' },
+              { name: 'Nos tarifs', href: '#nos-tarifs' },
+              { name: 'Où nous trouver ?', href: '#ou-nous-trouver' },
+              { name: 'Entrepreneur', href: '#entrepreneur' }
+            ].map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
                 className={`font-medium transition-all duration-300 ${
                   isScrolled ? 'text-primary' : 'text-white'
                 } hover:text-secondary relative group`}
               >
-                {item}
+                {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full" />
-              </Link>
+              </a>
             ))}
           </nav>
         </div>
