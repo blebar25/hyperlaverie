@@ -6,6 +6,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const locations = [
   {
@@ -99,12 +101,13 @@ const Locations = () => {
 
   useEffect(() => {
     setIsClient(true);
+    AOS.init();
   }, []);
 
   return (
     <section id="ou-nous-trouver" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
+        <div className="text-center" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-gray-900">Où nous trouver ?</h2>
           <p className="mt-4 text-xl text-gray-600">
             Près de 40 appareils à votre disposition dans chacune de nos hyperlaveries.
@@ -112,7 +115,12 @@ const Locations = () => {
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {locations.map((location, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden relative">
+            <div 
+              key={index} 
+              className="bg-white rounded-lg shadow-lg overflow-hidden relative"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
               {location.dropService && (
                 <div className="absolute top-3 right-3 z-10 drop-shadow-lg">
                   <div className="relative">
@@ -178,7 +186,7 @@ const Locations = () => {
         </div>
 
         {/* Carte OpenStreetMap */}
-        <div className="mt-16 rounded-lg overflow-hidden shadow-lg">
+        <div id="map" className="w-full h-[600px] mt-12 z-0 relative" style={{ zIndex: 0 }}>
           {isClient && <Map />}
         </div>
       </div>

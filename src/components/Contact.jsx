@@ -15,19 +15,32 @@ const Contact = () => {
         />
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mx-auto w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-8">
+        <div 
+          className="mx-auto w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-8"
+          data-aos="fade-down"
+        >
           <Building2 className="w-12 h-12 text-white" />
         </div>
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+        <h2 
+          className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           Vous souhaitez ouvrir votre propre laverie ?
         </h2>
-        <p className="text-xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
+        <p 
+          className="text-xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           Nous vous accompagnons durant les différentes étapes de votre projet entrepreneurial.
           Découvrez nos services et rejoignez un réseau de laveries en pleine expansion.
         </p>
         <a
           href="#"
           className="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-semibold text-lg hover:bg-secondary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+          data-aos="fade-up"
+          data-aos-delay="300"
         >
           En savoir plus
           <svg className="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor">

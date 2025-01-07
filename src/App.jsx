@@ -7,8 +7,19 @@ import Locations from './components/Locations';
 import Contact from './components/Contact';
 import WaveDecoration from './components/WaveDecoration';
 import Footer from './components/Footer';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  }, []);
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
