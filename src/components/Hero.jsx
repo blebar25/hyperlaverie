@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const handleScrollToTarifs = () => {
+    const element = document.getElementById('nos-tarifs');
+    if (element) {
+      const y = element.getBoundingClientRect().top + window.scrollY;
+      window.scroll({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="relative overflow-hidden">
       <div className="absolute inset-0 bg-primary z-20" style={{ opacity: 0 }} />
@@ -21,18 +32,19 @@ const Hero = () => {
               Les plus grandes laveries automatiques de France.
             </p>
             <div className="mt-10 flex justify-center gap-4">
-              <Link
-                to="#prices"
-                className="bg-secondary text-white px-8 py-3 rounded-md font-medium hover:bg-red-700 transition-colors"
+              <button
+                type="button"
+                onClick={handleScrollToTarifs}
+                className="cursor-pointer bg-secondary text-white px-8 py-3 rounded-md font-medium hover:bg-red-700 transition-colors"
               >
                 Voir nos tarifs
-              </Link>
-              <Link
-                to="#locations"
-                className="bg-white text-primary px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
+              </button>
+              <a
+                href="tel:0123456789"
+                className="cursor-pointer bg-white text-primary px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
               >
                 Besoin d'aide ?
-              </Link>
+              </a>
             </div>
             <div className="mt-8 inline-flex items-center px-4 py-2 bg-white/10 rounded-full">
               <img src="/carrefour-logo.svg" alt="Carrefour" className="h-6 mr-2" />

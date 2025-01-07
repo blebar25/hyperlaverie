@@ -1,16 +1,18 @@
-import { MapPin, Clock } from 'lucide-react';
+import { MapPin, Clock, Navigation } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation as SwiperNavigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useEffect, useState } from 'react';
+import 'leaflet/dist/leaflet.css';
 
 const locations = [
   {
     name: 'Hyperlaverie Carrefour Sartrouville',
     address: ['Av. Robert Schuman', '78500 Sartrouville'],
     machines: '25 machines à laver, 15 séchoirs',
-    mapLink: 'https://www.google.com/maps/place/Carrefour+Sartrouville/@48.9463524,2.1920811,17z/data=!3m1!4b1!4m6!3m5!1s0x47e66691bf270d0d:0x84ca7ae462ab00f!8m2!3d48.946349!4d2.196952!16s%2Fg%2F113j93cc6',
+    coordinates: [48.946349, 2.196952],
     images: [
       'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?auto=format&fit=crop&q=80',
@@ -22,7 +24,7 @@ const locations = [
     name: 'Hyperlaverie Carrefour Amiens',
     address: ["Zone d'Activité Commerciale Vallée", "80080 Amiens"],
     machines: '20 machines à laver, 12 séchoirs',
-    mapLink: 'https://www.google.com/maps/place/Centre+commercial+Carrefour+Amiens/@49.9004578,2.2733897,14z/data=!4m10!1m2!2m1!1scarrefour+amiens+!3m6!1s0x47e786bd0001e2c5:0xcfdfff8fb015f359!8m2!3d49.9200158!4d2.3028505!15sChBjYXJyZWZvdXIgYW1pZW5zIgOIAQFaEiIQY2FycmVmb3VyIGFtaWVuc5IBD3Nob3BwaW5nX2NlbnRlcuABAA!16s%2Fg%2F11clgksy85',
+    coordinates: [49.9200158, 2.3028505],
     images: [
       'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
@@ -34,7 +36,7 @@ const locations = [
     name: 'Hyperlaverie Carrefour Auchy-les-Mines',
     address: ['ZAC des Flandres', '62138 Auchy-les-Mines'],
     machines: '22 machines à laver, 14 séchoirs',
-    mapLink: 'https://www.google.com/maps/place/Centre+commercial+Carrefour+Auchy+les+Mines/@50.5199783,2.7925917,17z/data=!3m1!4b1!4m6!3m5!1s0x12b42cd68567d367:0xb7e45ad9ceab31a8!8m2!3d50.5199749!4d2.7951666!16s%2Fg%2F11c464pglk',
+    coordinates: [50.5199749, 2.7951666],
     images: [
       'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1596640843432-95c4f0ad9464?auto=format&fit=crop&q=80',
@@ -44,9 +46,63 @@ const locations = [
   }
 ];
 
+const Map = () => {
+  useEffect(() => {
+    const L = window.L;
+    if (!L) return;
+
+    const map = L.map('map').setView([49.7833, 2.4333], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: ' OpenStreetMap contributors'
+    }).addTo(map);
+
+    const customIcon = L.icon({
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
+    locations.forEach(location => {
+      const marker = L.marker(location.coordinates, { icon: customIcon }).addTo(map);
+      const popupContent = `
+        <div class="p-2">
+          <h3 class="font-semibold text-lg mb-2">${location.name}</h3>
+          <p class="text-sm mb-1">${location.address.join(', ')}</p>
+          <p class="text-sm mb-3">${location.machines}</p>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+          >
+            Itinéraire
+          </a>
+        </div>
+      `;
+      marker.bindPopup(popupContent);
+    });
+
+    return () => {
+      map.remove();
+    };
+  }, []);
+
+  return <div id="map" className="h-[500px] w-full rounded-lg"></div>;
+};
+
 const Locations = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
-    <section id="locations" className="py-20 bg-white">
+    <section id="ou-nous-trouver" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900">Où nous trouver ?</h2>
@@ -69,7 +125,7 @@ const Locations = () => {
                 </div>
               )}
               <Swiper
-                modules={[Navigation, Pagination]}
+                modules={[SwiperNavigation, Pagination]}
                 navigation
                 pagination={{ clickable: true }}
                 className="rounded-lg overflow-hidden shadow-xl"
@@ -99,7 +155,7 @@ const Locations = () => {
                     <Clock className="h-5 w-5 text-secondary" />
                     <span className="ml-2">24h/24 - 7j/7</span>
                   </div>
-                  <p className="text-sm text-gray-600 mt-2">{location.machines}</p>
+                  <p className="text-gray-600">{location.machines}</p>
                   {location.dropService && (
                     <div className="mt-3 p-3 bg-blue-50 rounded-lg">
                       <p className="text-sm text-primary font-medium">
@@ -109,7 +165,7 @@ const Locations = () => {
                   )}
                 </div>
                 <a
-                  href={location.mapLink}
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
@@ -119,6 +175,11 @@ const Locations = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Carte OpenStreetMap */}
+        <div className="mt-16 rounded-lg overflow-hidden shadow-lg">
+          {isClient && <Map />}
         </div>
       </div>
     </section>
