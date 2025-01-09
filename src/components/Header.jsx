@@ -32,7 +32,7 @@ const Header = () => {
               }}
             >
               <img 
-                src="/hyperlaverie/hyperlaverie-logo.png" 
+                src="/hyperlaverie/logo.png" 
                 alt="Hyperlaverie" 
                 className={`transition-all duration-300 ${
                   isScrolled ? 'h-12' : 'h-16'
