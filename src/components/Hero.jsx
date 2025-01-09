@@ -20,14 +20,14 @@ const Hero = () => {
               className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
               data-aos="fade-down"
             >
-              La laverie premium en partenariat avec Carrefour
+              Les plus grandes laveries automatiques de France.
             </h1>
             <p 
               className="mt-6 text-xl max-w-3xl mx-auto"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              Les plus grandes laveries automatiques de France.
+              En partenariat avec Carrefour.
             </p>
             <div 
               className="mt-10 flex justify-center gap-4 relative z-30"

@@ -35,7 +35,7 @@ const Prices = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl font-bold text-gray-900">Nos tarifs</h2>
-          <p className="mt-4 text-xl text-gray-600">Des prix transparents pour tous vos besoins</p>
+          <p className="mt-4 text-xl text-gray-600">Profitez de machines à laver et séchoirs Electrolux, adaptés à vos besoins et à des prix compétitifs</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

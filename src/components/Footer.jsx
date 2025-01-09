@@ -5,7 +5,7 @@ const Footer = () => {
     { name: 'Nos services', href: '#nos-services' },
     { name: 'Nos tarifs', href: '#nos-tarifs' },
     { name: 'Où nous trouver ?', href: '#ou-nous-trouver' },
-    { name: 'Entrepreneur', href: '#entrepreneur' },
+    { name: 'Ouvrir une laverie', href: '#ouvrir-une-laverie' },
   ];
 
   return (
@@ -62,16 +62,14 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-[#004E9F]">Horaires</h3>
             <ul className="mt-4 space-y-2 text-gray-600">
-              <li>Laverie : 24h/24 - 7j/7</li>
-              <li>Service client :</li>
-              <li>Lun-Ven : 9h-18h</li>
+              <li>7h-22h - 7j/7</li>
             </ul>
           </div>
         </div>
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-600 text-sm">
-          <p> {new Date().getFullYear()} Hyperlaverie - En partenariat avec Carrefour. Tous droits réservés.</p>
+          <p> © {new Date().getFullYear()} Hyperlaverie - En partenariat avec Carrefour. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

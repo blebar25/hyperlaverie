@@ -2,7 +2,7 @@ import { Building2 } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="entrepreneur" className="relative py-32 overflow-hidden bg-gradient-to-br from-primary to-[#003D7D]">
+    <section id="ouvrir-une-laverie" className="relative py-32 overflow-hidden bg-gradient-to-br from-primary to-[#003D7D]">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl animate-blob" />

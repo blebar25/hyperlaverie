@@ -45,7 +45,7 @@ const Header = () => {
               { name: 'Nos services', href: '#nos-services' },
               { name: 'Nos tarifs', href: '#nos-tarifs' },
               { name: 'Où nous trouver ?', href: '#ou-nous-trouver' },
-              { name: 'Entrepreneur', href: '#entrepreneur' }
+              { name: 'Ouvrir une laverie', href: '#ouvrir-une-laverie' }
             ].map((item) => (
               <a
                 key={item.name}
