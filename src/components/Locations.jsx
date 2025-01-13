@@ -79,7 +79,8 @@ const Map = () => {
             href="https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+            style="color;white !important;"
+            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
           >
             Itinéraire
           </a>

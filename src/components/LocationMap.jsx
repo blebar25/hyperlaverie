@@ -2,13 +2,16 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 // Correction pour l'icône du marqueur
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
 });
 
 const locations = [
@@ -35,7 +38,6 @@ const LocationMap = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Nos Laveries</h2>
         <div className="h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
           <MapContainer 
             center={center} 
@@ -50,7 +52,16 @@ const LocationMap = () => {
               <Marker key={index} position={location.position}>
                 <Popup>
                   <div className="font-semibold">{location.name}</div>
-                  <div className="text-sm">{location.address}</div>
+                  <div className="text-sm mb-2">{location.address}</div>
+                  <a 
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${location.position[0]},${location.position[1]}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'white' }}
+                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors"
+                  >
+                    Itinéraire
+                  </a>
                 </Popup>
               </Marker>
             ))}

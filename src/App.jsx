@@ -28,7 +28,6 @@ function App() {
         <main>
           <Hero />
           <Services />
-          <LocationMap />
           <Prices />
           <Locations />
           <Contact />
