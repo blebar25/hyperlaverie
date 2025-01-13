@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
+import LocationMap from './components/LocationMap';
 import Prices from './components/Prices';
 import Locations from './components/Locations';
 import Contact from './components/Contact';
@@ -27,6 +28,7 @@ function App() {
         <main>
           <Hero />
           <Services />
+          <LocationMap />
           <Prices />
           <Locations />
           <Contact />

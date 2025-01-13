@@ -20,10 +20,10 @@ const services = [
   },
   {
     icon: CreditCard,
-    title: 'Paiement Facile',
+    title: 'Paiement facile',
     description: 'Acceptons CB, espèces et paiement mobile. Profitez des avantages Carrefour.',
     delay: 2,
-    name: 'Paiement Facile',
+    name: 'Paiement facile',
   },
 ];
 
