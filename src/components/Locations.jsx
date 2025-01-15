@@ -1,3 +1,19 @@
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+// Correction pour l'icône du marqueur
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
 import { MapPin, Clock, Navigation } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation as SwiperNavigation, Pagination } from 'swiper/modules';
@@ -5,7 +21,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
-import 'leaflet/dist/leaflet.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -17,7 +32,7 @@ const locations = [
     coordinates: [48.946349, 2.196952],
     images: [
       'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1521656693074-0ef32e80c0bce?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80'
     ],
     dropService: false
@@ -35,66 +50,73 @@ const locations = [
     dropService: true
   },
   {
-    name: 'Hyperlaverie Carrefour Auchy-les-Mines',
-    address: ['ZAC des Flandres', '62138 Auchy-les-Mines'],
-    machines: '22 machines à laver, 14 séchoirs',
-    coordinates: [50.5199749, 2.7951666],
+    name: 'Hyperlaverie Auchy-les-Mines',
+    address: ['62138 Auchy-les-Mines'],
+    machines: '20 machines à laver, 12 séchoirs',
+    coordinates: [50.497326, 2.852105],
     images: [
-      'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1596640843432-95c4f0ad9464?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&q=80'
     ],
-    dropService: false
+    dropService: true
   }
 ];
 
 const Map = () => {
-  useEffect(() => {
-    const L = window.L;
-    if (!L) return;
+  const avgLat = locations.reduce((sum, loc) => sum + loc.coordinates[0], 0) / locations.length;
+  const avgLng = locations.reduce((sum, loc) => sum + loc.coordinates[1], 0) / locations.length;
 
-    const map = L.map('map').setView([49.7833, 2.4333], 7);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: ' OpenStreetMap contributors'
-    }).addTo(map);
-
-    const customIcon = L.icon({
-      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
-
-    locations.forEach(location => {
-      const marker = L.marker(location.coordinates, { icon: customIcon }).addTo(map);
-      const popupContent = `
-        <div class="p-2">
-          <h3 class="font-semibold text-lg mb-2">${location.name}</h3>
-          <p class="text-sm mb-1">${location.address.join(', ')}</p>
-          <p class="text-sm mb-3">${location.machines}</p>
-          <a
-            href="https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}"
-            target="_blank"
-            rel="noopener noreferrer"
-            style="color;white !important;"
-            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Itinéraire
-          </a>
+  return (
+    <div 
+      className="relative p-4"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 rounded-3xl transform -skew-y-2"></div>
+      <div className="relative">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden p-2">
+          <div id="map" className="h-[500px] w-full rounded-xl overflow-hidden">
+            <MapContainer 
+              center={[avgLat, avgLng]} 
+              zoom={7} 
+              style={{ height: '100%', width: '100%' }}
+              className="z-10"
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              {locations.map((location, index) => (
+                <Marker 
+                  key={index} 
+                  position={[location.coordinates[0], location.coordinates[1]]}
+                >
+                  <Popup className="custom-popup">
+                    <div className="p-2">
+                      <div className="font-bold text-lg mb-2 text-blue-600">{location.name}</div>
+                      <div className="text-sm mb-3 text-gray-600">{location.address.join(', ')}</div>
+                      <div className="text-sm mb-3 text-gray-500">{location.machines}</div>
+                      <a 
+                        href={`https://www.google.com/maps/dir/current+location/${location.coordinates[0]},${location.coordinates[1]}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: 'white' }}
+                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                      >
+                        <Navigation className="w-4 h-4 mr-2" />
+                        Itinéraire
+                      </a>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
         </div>
-      `;
-      marker.bindPopup(popupContent);
-    });
-
-    return () => {
-      map.remove();
-    };
-  }, []);
-
-  return <div id="map" className="h-[500px] w-full rounded-lg"></div>;
+      </div>
+    </div>
+  );
 };
 
 const Locations = () => {
@@ -174,7 +196,7 @@ const Locations = () => {
                   )}
                 </div>
                 <a
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}`}
+                  href={`https://www.google.com/maps/dir/current+location/${location.coordinates[0]},${location.coordinates[1]}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
