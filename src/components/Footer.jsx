@@ -45,14 +45,14 @@ const Footer = () => {
             <ul className="mt-4 space-y-2 text-gray-600">
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-secondary" />
-                <a href="tel:0123456789" className="text-gray-600 hover:text-secondary transition-colors duration-200">
-                  01 23 45 67 89
+                <a href="tel:+33749245848" className="text-gray-600 hover:text-secondary transition-colors duration-200">
+                07 49 24 58 48
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-secondary" />
-                <a href="mailto:contact@hyperlaverie.fr" className="text-gray-600 hover:text-secondary transition-colors duration-200">
-                  contact@hyperlaverie.fr
+                <a href="mailto:lelavoir26@gmail.com" className="text-gray-600 hover:text-secondary transition-colors duration-200">
+                lelavoir26@gmail.com
                 </a>
               </li>
             </ul>

@@ -59,7 +59,7 @@ const locations = [
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&q=80'
     ],
-    dropService: true
+    dropService: false
   }
 ];
 

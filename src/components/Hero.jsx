@@ -41,7 +41,7 @@ const Hero = () => {
                 Voir nos tarifs
               </a>
               <a
-                href="tel:0123456789"
+                href="tel:+33749245848"
                 className="cursor-pointer bg-white text-primary px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
               >
                 Besoin d'aide ?
