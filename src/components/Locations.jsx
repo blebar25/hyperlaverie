@@ -110,12 +110,7 @@ const Map = () => {
                       <div className="font-bold text-lg mb-2 text-blue-600">{location.name}</div>
                       <div className="text-sm mb-3 text-gray-600">{location.address.join(', ')}</div>
                       <div className="text-sm mb-3">{location.machines}</div>
-                      {location.dropService && (
-                        <div className="text-sm mb-3">
-                          <span className="font-semibold">Drop Service :</span> {location.dropService}
-                        </div>
-                      )}
-                      {!location.dropService && <div className="mb-3"></div>}
+                      <div className="mb-3"></div>
                       <a
                         href={`https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}`}
                         target="_blank"
