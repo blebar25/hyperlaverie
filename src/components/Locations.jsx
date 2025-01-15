@@ -53,7 +53,7 @@ const locations = [
     name: 'Hyperlaverie Auchy-les-Mines',
     address: ['ZAC des Flandres, 62138 Auchy-les-Mines'],
     machines: '20 machines à laver, 12 séchoirs',
-    coordinates: [50.5199749,2.7977362,17],
+    coordinates: [50.5167, 2.7333],
     images: [
       'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
