@@ -19,7 +19,7 @@ const prices = [
     icon: Droplets,
     title: 'Machine à laver',
     capacity: '18 kg',
-    price: '12,90 €',
+    price: '11,90 €',
   },
   {
     icon: Wind,
@@ -39,24 +39,23 @@ const Prices = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {prices.map((price, index) => (
-            <div
-              key={`${price.title}-${price.capacity}`}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
-                <div className="bg-blue-50 p-4 rounded-full mb-4">
-                  {React.createElement(price.icon, {
-                    className: "h-8 w-8 text-[#004E9F]"
-                  })}
+          {prices.map((price, index) => {
+            const Icon = price.icon;
+            return (
+              <div key={`${price.title}-${price.capacity}`} className="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="flex items-center justify-center mb-4">
+                  <Icon className="w-12 h-12 text-[#004E9F]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{price.title}</h3>
-                <p className="text-lg font-medium text-gray-600 mb-4">{price.capacity}</p>
-                <p className="text-4xl font-bold text-[#004E9F]">{price.price}</p>
+                <div className="flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 text-center">{price.title}</h3>
+                    <p className="text-gray-600 mb-4 text-center">{price.capacity}</p>
+                  </div>
+                  <div className="text-4xl font-bold text-[#004E9F] text-center mt-auto">{price.price}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">

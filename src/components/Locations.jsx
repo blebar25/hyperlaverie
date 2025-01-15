@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -26,7 +26,7 @@ import 'aos/dist/aos.css';
 
 const locations = [
   {
-    name: 'Hyperlaverie Carrefour Sartrouville',
+    name: 'Hyperlaverie Sartrouville',
     address: ['Av. Robert Schuman', '78500 Sartrouville'],
     machines: '25 machines à laver, 15 séchoirs',
     coordinates: [48.946349, 2.196952],
@@ -38,7 +38,7 @@ const locations = [
     dropService: false
   },
   {
-    name: 'Hyperlaverie Carrefour Amiens',
+    name: 'Hyperlaverie Amiens',
     address: ["Zone d'Activité Commerciale Vallée", "80080 Amiens"],
     machines: '20 machines à laver, 12 séchoirs',
     coordinates: [49.9200158, 2.3028505],
@@ -51,9 +51,9 @@ const locations = [
   },
   {
     name: 'Hyperlaverie Auchy-les-Mines',
-    address: ['62138 Auchy-les-Mines'],
+    address: ['ZAC des Flandres, 62138 Auchy-les-Mines'],
     machines: '20 machines à laver, 12 séchoirs',
-    coordinates: [50.497326, 2.852105],
+    coordinates: [50.5199749,2.7977362,17],
     images: [
       'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
@@ -63,10 +63,24 @@ const locations = [
   }
 ];
 
-const Map = () => {
-  const avgLat = locations.reduce((sum, loc) => sum + loc.coordinates[0], 0) / locations.length;
-  const avgLng = locations.reduce((sum, loc) => sum + loc.coordinates[1], 0) / locations.length;
+const MapBounds = ({ locations }) => {
+  const map = useMap();
+  
+  React.useEffect(() => {
+    if (locations.length > 0) {
+      const bounds = locations.reduce(
+        (bounds, location) => bounds.extend([location.coordinates[0], location.coordinates[1]]),
+        L.latLngBounds([locations[0].coordinates[0], locations[0].coordinates[1]], [locations[0].coordinates[0], locations[0].coordinates[1]])
+      );
+      
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [locations, map]);
 
+  return null;
+};
+
+const Map = () => {
   return (
     <div 
       className="relative p-4"
@@ -78,11 +92,10 @@ const Map = () => {
         <div className="bg-white rounded-2xl shadow-2xl overflow-hidden p-2">
           <div id="map" className="h-[500px] w-full rounded-xl overflow-hidden">
             <MapContainer 
-              center={[avgLat, avgLng]} 
-              zoom={7} 
-              style={{ height: '100%', width: '100%' }}
-              className="z-10"
+              style={{ height: '500px', width: '100%' }}
+              className="rounded-lg shadow-lg"
             >
+              <MapBounds locations={locations} />
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -92,19 +105,23 @@ const Map = () => {
                   key={index} 
                   position={[location.coordinates[0], location.coordinates[1]]}
                 >
-                  <Popup className="custom-popup">
+                  <Popup style="width: 290px;" className="custom-popup">
                     <div className="p-2">
                       <div className="font-bold text-lg mb-2 text-blue-600">{location.name}</div>
                       <div className="text-sm mb-3 text-gray-600">{location.address.join(', ')}</div>
-                      <div className="text-sm mb-3 text-gray-500">{location.machines}</div>
-                      <a 
-                        href={`https://www.google.com/maps/dir/current+location/${location.coordinates[0]},${location.coordinates[1]}`}
+                      <div className="text-sm mb-3">{location.machines}</div>
+                      {location.dropService && (
+                        <div className="text-sm mb-3">
+                          <span className="font-semibold">Drop Service :</span> {location.dropService}
+                        </div>
+                      )}
+                      {!location.dropService && <div className="mb-3"></div>}
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: 'white' }}
-                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                        className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
                       >
-                        <Navigation className="w-4 h-4 mr-2" />
                         Itinéraire
                       </a>
                     </div>
@@ -184,7 +201,7 @@ const Locations = () => {
                   </div>
                   <div className="flex items-center">
                     <Clock className="h-5 w-5 text-secondary" />
-                    <span className="ml-2">24h/24 - 7j/7</span>
+                    <span className="ml-2">7h/22H - 7j/7</span>
                   </div>
                   <p className="text-gray-600">{location.machines}</p>
                   {location.dropService && (
@@ -194,6 +211,10 @@ const Locations = () => {
                       </p>
                     </div>
                   )}
+                  {!location.dropService && (
+                    <div className="h-16">
+                    </div>
+                  )}
                 </div>
                 <a
                   href={`https://www.google.com/maps/dir/current+location/${location.coordinates[0]},${location.coordinates[1]}`}
@@ -201,7 +222,7 @@ const Locations = () => {
                   rel="noopener noreferrer"
                   className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
                 >
-                  Voir sur la carte
+                  Itinéraire
                 </a>
               </div>
             </div>
