@@ -10,12 +10,12 @@ const Hero = () => {
         <div className="absolute inset-0 z-0">
           <img
             className="w-full h-full object-cover opacity-20"
-            src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80"
-            alt="Laverie moderne"
+            src="/hyperlaverie/images/laverie.jpg"
+            alt="Hyperlaverie"
           />
         </div>
-        <div style={{ height: '600px' }} className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 z-20">
-          <div style={{ marginTop: '50px' }} className="text-center">
+        <div style={{ height: '900px' }} className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 z-20">
+          <div style={{ marginTop: '200px' }} className="text-center">
             <h1 
               className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
               data-aos="fade-down"
