@@ -14,7 +14,7 @@ const Hero = () => {
             alt="Hyperlaverie"
           />
         </div>
-        <div style={{ height: '900px' }} className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 z-20">
+        <div style={{ height: '910px' }} className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 z-20">
           <div style={{ marginTop: '200px' }} className="text-center">
             <h1 
               className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
