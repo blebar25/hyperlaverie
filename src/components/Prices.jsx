@@ -58,11 +58,7 @@ const Prices = () => {
           })}
         </div>
 
-        <div className="mt-12 text-center" data-aos="fade-up" data-aos-delay="400">
-          <p className="text-sm text-gray-600">
-            * Paiement par CB, espèces ou application mobile. Réductions avec la carte Carrefour.
-          </p>
-        </div>
+
       </div>
     </section>
   );

@@ -36,7 +36,7 @@ const Services = () => {
             Nos services
           </h2>
           <p className="mt-4 text-xl text-gray-600">
-            Des services de qualité pour votre confort
+          Profitez d'un service de qualité, rapide, abordable et sécurisé, idéal pour les particuliers et professionnels
           </p>
         </div>
         <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

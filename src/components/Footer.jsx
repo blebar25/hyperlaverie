@@ -24,7 +24,7 @@ const Footer = () => {
 
           {/* Navigations */}
           <div>
-            <h3 className="text-lg font-semibold text-[#004E9F]">Navigations</h3>
+            <h3 className="text-lg font-semibold text-[#004E9F]">Navigation</h3>
             <ul className="mt-4 space-y-2">
               {navigation.map((item) => (
                 <li key={item.name}>
