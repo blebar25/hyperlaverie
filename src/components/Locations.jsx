@@ -148,6 +148,9 @@ const Locations = () => {
             Près de 40 appareils à votre disposition dans chacune de nos hyperlaveries.
           </p>
         </div>
+
+        {isClient && <Map />}
+
         <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {locations.map((location, index) => (
             <div 
@@ -162,7 +165,7 @@ const Locations = () => {
                     <img
                       src="/hyperlaverie/badge-drop.jpeg"
                       alt="Drop Service"
-                      className="w-16 h-16 rounded-[22px]"
+                      style={{ width: "4rem", height: "4rem", borderRadius: "22px", }}  
                     />
                   </div>
                 </div>
@@ -222,11 +225,6 @@ const Locations = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Carte OpenStreetMap */}
-        <div id="map" className="w-full h-[600px] mt-12 z-0 relative" style={{ zIndex: 0 }}>
-          {isClient && <Map />}
         </div>
       </div>
     </section>

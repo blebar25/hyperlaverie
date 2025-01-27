@@ -63,6 +63,7 @@ html {
 }
 
 .leaflet-attribution-flag {
+  width: 0rem !important;
   display: none !important;
 }
 
