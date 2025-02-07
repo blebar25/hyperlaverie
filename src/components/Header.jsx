@@ -30,17 +30,35 @@ const Header = () => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              className="flex items-center"
             >
-              <img 
-                src="/hyperlaverie/logo.png" 
-                alt="Hyperlaverie" 
-                className={`transition-all duration-300 ${
-                  isScrolled ? 'h-12' : 'h-16'
-                } w-auto`} 
-              />
+              <style jsx>{`
+                @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+                
+                .logo-text {
+                  font-family: 'Lilita One', cursive;
+                }
+                .text-stroke {
+                  -webkit-text-stroke: 1px white;
+                  text-stroke: 2px white;
+                  text-shadow: 
+                    2px 2px 0 white,
+                    -2px -2px 0 white,
+                    2px -2px 0 white,
+                    -2px 2px 0 white,
+                    0 2px 0 white,
+                    2px 0 0 white,
+                    0 -2px 0 white,
+                    -2px 0 0 white;
+                }
+              `}</style>
+              <h1 className={`text-2xl md:text-3xl transition-all duration-300 logo-text ${isScrolled ? 'scale-90' : 'scale-100'}`}>
+                <span className="text-red-600 text-stroke">HYPER</span>
+                <span className="text-primary text-stroke">LAVERIE</span>
+              </h1>
             </a>
           </div>
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {[
               { name: 'Nos services', href: '#nos-services' },
               { name: 'Nos tarifs', href: '#nos-tarifs' },
@@ -50,12 +68,16 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className={`font-medium transition-all duration-300 ${
-                  isScrolled ? 'text-primary' : 'text-white'
-                } hover:text-secondary relative group`}
+                className={`${
+                  item.name === 'Ouvrir une laverie'
+                    ? 'bg-white text-primary px-4 py-2 rounded-full text-sm border border-primary hover:bg-secondary hover:text-white transition-colors flex items-center'
+                    : `text-${isScrolled ? 'primary' : 'white'} hover:text-secondary relative group flex items-center`
+                }`}
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full" />
+                {item.name !== 'Ouvrir une laverie' && (
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full" />
+                )}
               </a>
             ))}
           </nav>

@@ -29,37 +29,44 @@ const locations = [
     name: 'Hyperlaverie Sartrouville',
     address: ['Av. Robert Schuman', '78500 Sartrouville'],
     machines: '25 machines à laver, 15 séchoirs',
-    coordinates: [48.946349, 2.196952],
+    coordinates: [48.9530046, 2.1636584],
+    googleMapsUrl: 'https://www.google.com/maps/place/Carrefour+Sartrouville/@48.946349,2.196952,17z/data=!3m1!4b1!4m6!3m5!1s0x47e66691bf270d0d:0x84ca7ae462ab00f!8m2!3d48.946349!4d2.196952!16s%2Fg%2F113j93cc6?entry=ttu',
     images: [
       'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1521656693074-0ef32e80c0bce?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80'
     ],
-    dropService: false
+    dropService: false,
+    isActive: true
   },
   {
     name: 'Hyperlaverie Amiens',
     address: ["Zone d'Activité Commerciale Vallée", "80080 Amiens"],
     machines: '20 machines à laver, 12 séchoirs',
-    coordinates: [49.9200158, 2.3028505],
+    coordinates: [49.9200158, 2.3002756],
+    googleMapsUrl: 'https://www.google.com/maps/place/Centre+commercial+Carrefour+Amiens/@49.9200158,2.3002756,17z/data=!3m1!4b1!4m6!3m5!1s0x47e786bd0001e2c5:0xcfdfff8fb015f359!8m2!3d49.9200158!4d2.3028505!16s%2Fg%2F11clgksy85?entry=ttu',
     images: [
       'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&q=80'
     ],
-    dropService: true
+    dropService: true,
+    isActive: false
   },
   {
     name: 'Hyperlaverie Auchy-les-Mines',
     address: ['ZAC des Flandres, 62138 Auchy-les-Mines'],
     machines: '20 machines à laver, 12 séchoirs',
-    coordinates: [50.5167, 2.7333],
+    coordinates: [50.519941, 2.796117],
+    googleMapsUrl: 'https://www.google.com/maps/place/Carrefour+Auchy+Les+Mines/data=!4m2!3m1!1s0x0:0x1c29fa22e2c12c53?sa=X&ved=1t:2428',
     images: [
       'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&q=80'
     ],
-    dropService: false
+    dropService: false,
+    ecoDryers: true,
+    isActive: false
   }
 ];
 
@@ -106,18 +113,26 @@ const Map = () => {
                   position={[location.coordinates[0], location.coordinates[1]]}
                 >
                   <Popup style="width: 290px;" className="custom-popup">
-                    <div className="p-2">
+                    <div className={`p-2 ${!location.isActive ? 'opacity-75 grayscale' : ''}`}>
                       <div className="font-bold text-lg mb-2 text-blue-600">{location.name}</div>
+                      {!location.isActive && (
+                        <div className="bg-gray-800 text-center text-white text-xs font-medium px-3 py-2 rounded-full shadow-lg inline-block mb-2">
+                          Prochainement
+                        </div>
+                      )}
                       <div className="text-sm mb-3 text-gray-600">{location.address.join(', ')}</div>
                       <div className="text-sm mb-3">{location.machines}</div>
                       <div className="mb-3"></div>
                       <a
-                        href={`https://www.google.com/maps/dir/?api=1&destination=${location.coordinates[0]},${location.coordinates[1]}`}
+                        href={location.googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
                       >
-                        Itinéraire
+                        <div className="flex items-center">
+                          <MapPin className="h-4 w-4 mr-2" />
+                          Itinéraire
+                        </div>
                       </a>
                     </div>
                   </Popup>
@@ -155,19 +170,33 @@ const Locations = () => {
           {locations.map((location, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg shadow-lg overflow-hidden relative"
+              className={`bg-white rounded-lg shadow-lg overflow-hidden relative ${!location.isActive ? 'opacity-75 grayscale' : ''}`}
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              {location.dropService && (
-                <div className="absolute top-3 right-3 z-10 drop-shadow-lg">
-                  <div className="relative">
-                    <img
-                      src="/hyperlaverie/badge-drop.jpeg"
-                      alt="Drop Service"
-                      style={{ width: "4rem", height: "4rem", borderRadius: "22px", }}  
-                    />
-                  </div>
+              {(location.dropService || location.ecoDryers || !location.isActive) && (
+                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+                  {!location.isActive && (
+                    <div className="bg-gray-800 text-center text-white text-xs font-medium px-3 py-2 rounded-full shadow-lg inline-block">
+                      Prochainement
+                    </div>
+                  )}
+                  {location.dropService && (
+                    <div className="drop-shadow-lg">
+                      <div className="relative">
+                        <img
+                          src="/hyperlaverie/badge-drop.jpeg"
+                          alt="Drop Service"
+                          style={{ width: "4rem", height: "4rem", borderRadius: "22px", }}  
+                        />
+                      </div>
+                    </div>
+                  )}
+                  {location.ecoDryers && (
+                    <div className="bg-green-100 text-green-800 text-xs font-medium px-3 py-2 rounded-full shadow-lg border border-green-200 max-w-[200px] text-center">
+                      Séchoirs éco et séchoirs grande capacité
+                    </div>
+                  )}
                 </div>
               )}
               <Swiper
@@ -210,18 +239,20 @@ const Locations = () => {
                     </div>
                   )}
                   {!location.dropService && (
-                    <div className="h-16">
-                    </div>
+                    <div className="h-[64px]"></div>
                   )}
                 </div>
-                <a
-                  href={`https://www.google.com/maps/dir/current+location/${location.coordinates[0]},${location.coordinates[1]}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded hover:bg-[#003D7D] transition-colors"
-                >
-                  Itinéraire
-                </a>
+                <div className="mt-4">
+                  <a
+                    href={location.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 bg-primary text-white rounded hover:bg-[#003D7D] transition-colors"
+                  >
+                    <MapPin className="h-4 w-4 mr-2" />
+                    Itinéraire
+                  </a>
+                </div>
               </div>
             </div>
           ))}
