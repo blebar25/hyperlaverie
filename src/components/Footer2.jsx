@@ -1,6 +1,6 @@
 import { Mail, Phone } from 'lucide-react';
 
-const Footer = () => {
+const Footer2 = () => {
   const navigation = [
     { name: 'Nos services', href: '#nos-services' },
     { name: 'Nos tarifs', href: '#nos-tarifs' },
@@ -77,4 +77,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer2;

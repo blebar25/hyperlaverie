@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header2 = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Header = () => {
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white shadow-lg py-2' 
-          : 'bg-transparent py-4'
+          : 'bg-[#004E9F] py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,4 +86,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;
