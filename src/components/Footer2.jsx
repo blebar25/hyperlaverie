@@ -2,10 +2,10 @@ import { Mail, Phone } from 'lucide-react';
 
 const Footer2 = () => {
   const navigation = [
-    { name: 'Nos services', href: '#nos-services' },
-    { name: 'Nos tarifs', href: '#nos-tarifs' },
-    { name: 'Où nous trouver ?', href: '#ou-nous-trouver' },
-    { name: 'Ouvrir une laverie', href: '#ouvrir-une-laverie' },
+    { name: 'Nos services', href: '/#nos-services' },
+    { name: 'Nos tarifs', href: '/#nos-tarifs' },
+    { name: 'Où nous trouver ?', href: '/#ou-nous-trouver' },
+    { name: 'Ouvrir une laverie', href: '/#ouvrir-une-laverie' },
     { name: 'Mentions Légales', href: "/hyperlaverie/mentions-legales" },
   ];
 

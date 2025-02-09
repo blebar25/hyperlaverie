@@ -59,10 +59,10 @@ const Header2 = () => {
           </div>
           <nav className="hidden md:flex items-center space-x-8">
             {[
-              { name: 'Nos services', href: '#nos-services' },
-              { name: 'Nos tarifs', href: '#nos-tarifs' },
-              { name: 'Où nous trouver ?', href: '#ou-nous-trouver' },
-              { name: 'Ouvrir une laverie', href: '#ouvrir-une-laverie' }
+              { name: 'Nos services', href: '/#nos-services' },
+              { name: 'Nos tarifs', href: '/#nos-tarifs' },
+              { name: 'Où nous trouver ?', href: '/#ou-nous-trouver' },
+              { name: 'Ouvrir une laverie', href: '/#ouvrir-une-laverie' }
             ].map((item) => (
               <a
                 key={item.name}
