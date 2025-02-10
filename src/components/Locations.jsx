@@ -32,9 +32,14 @@ const locations = [
     coordinates: [48.9530046, 2.1636584],
     googleMapsUrl: 'https://www.google.com/maps/place/Carrefour+Sartrouville/@48.946349,2.196952,17z/data=!3m1!4b1!4m6!3m5!1s0x47e66691bf270d0d:0x84ca7ae462ab00f!8m2!3d48.946349!4d2.196952!16s%2Fg%2F113j93cc6?entry=ttu',
     images: [
-      'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1521656693074-0ef32e80c0bce?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80'
+      '/hyperlaverie/images/Sartrouville/IMG_3111.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3112.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3113.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3114.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3115.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3116.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3117.jpeg',
+      '/hyperlaverie/images/Sartrouville/IMG_3118.jpeg'
     ],
     dropService: false,
     isActive: true

@@ -1,12 +1,23 @@
 import { Mail, Phone } from 'lucide-react';
+import { useState } from 'react';
+import LegalModal from './LegalModal';
 
 const Footer2 = () => {
+  const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
+
   const navigation = [
     { name: 'Nos services', href: '/#nos-services' },
     { name: 'Nos tarifs', href: '/#nos-tarifs' },
     { name: 'Où nous trouver ?', href: '/#ou-nous-trouver' },
     { name: 'Ouvrir une laverie', href: '/#ouvrir-une-laverie' },
-    { name: 'Mentions Légales', href: "/hyperlaverie/mentions-legales" },
+    { 
+      name: 'Mentions Légales', 
+      href: "#",
+      onClick: (e) => {
+        e.preventDefault();
+        setIsLegalModalOpen(true);
+      }
+    },
   ];
 
   return (
@@ -31,6 +42,7 @@ const Footer2 = () => {
                 <li key={item.name}>
                   <a
                     href={item.href}
+                    onClick={item.onClick}
                     className="text-gray-600 hover:text-secondary transition-colors duration-200"
                   >
                     {item.name}
@@ -70,9 +82,10 @@ const Footer2 = () => {
 
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-600 text-sm">
-          <p className="mb-2"> © {new Date().getFullYear()} Hyperlaverie. Tous droits réservés.</p>
+          <p className="mb-2"> {new Date().getFullYear()} Hyperlaverie. Tous droits réservés.</p>
         </div>
       </div>
+      <LegalModal isOpen={isLegalModalOpen} onClose={() => setIsLegalModalOpen(false)} />
     </footer>
   );
 };
