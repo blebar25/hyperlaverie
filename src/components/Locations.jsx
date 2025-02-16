@@ -28,7 +28,7 @@ const locations = [
   {
     name: 'Hyperlaverie Sartrouville',
     address: ['Av. Robert Schuman', '78500 Sartrouville'],
-    machines: '25 machines à laver, 15 séchoirs',
+//    machines: '25 machines à laver, 15 séchoirs',
     coordinates: [48.9530046, 2.1636584],
     googleMapsUrl: 'https://www.google.com/maps/place/Carrefour+Sartrouville/@48.946349,2.196952,17z/data=!3m1!4b1!4m6!3m5!1s0x47e66691bf270d0d:0x84ca7ae462ab00f!8m2!3d48.946349!4d2.196952!16s%2Fg%2F113j93cc6?entry=ttu',
     images: [
@@ -47,7 +47,7 @@ const locations = [
   {
     name: 'Hyperlaverie Amiens',
     address: ["Zone d'Activité Commerciale Vallée", "80080 Amiens"],
-    machines: '20 machines à laver, 12 séchoirs',
+  //  machines: '20 machines à laver, 12 séchoirs',
     coordinates: [49.9200158, 2.3002756],
     googleMapsUrl: 'https://www.google.com/maps/place/Centre+commercial+Carrefour+Amiens/@49.9200158,2.3002756,17z/data=!3m1!4b1!4m6!3m5!1s0x47e786bd0001e2c5:0xcfdfff8fb015f359!8m2!3d49.9200158!4d2.3028505!16s%2Fg%2F11clgksy85?entry=ttu',
     images: [
@@ -61,7 +61,7 @@ const locations = [
   {
     name: 'Hyperlaverie Auchy-les-Mines',
     address: ['ZAC des Flandres, 62138 Auchy-les-Mines'],
-    machines: '20 machines à laver, 12 séchoirs',
+  //  machines: '20 machines à laver, 12 séchoirs',
     coordinates: [50.519941, 2.796117],
     googleMapsUrl: 'https://www.google.com/maps/place/Carrefour+Auchy+Les+Mines/data=!4m2!3m1!1s0x0:0x1c29fa22e2c12c53?sa=X&ved=1t:2428',
     images: [
@@ -160,39 +160,46 @@ const Locations = () => {
   }, []);
 
   return (
-    <section id="ou-nous-trouver" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center" data-aos="fade-up">
-          <h2 className="text-3xl font-bold text-gray-900">Où nous trouver ?</h2>
-          <p className="mt-4 text-xl text-gray-600">
+    <section id="ou-nous-trouver" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="text-center mb-6 sm:mb-8 md:mb-12" data-aos="fade-up">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">Où nous trouver ?</h2>
+          <p className="mt-2 sm:mt-3 md:mt-4 text-base sm:text-lg md:text-xl text-gray-600">
             Près de 40 appareils à votre disposition dans chacune de nos hyperlaveries.
           </p>
         </div>
+        
+        <div className="relative p-2 sm:p-3 md:p-4" data-aos="fade-up" data-aos-duration="1000">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 rounded-3xl transform -skew-y-2"></div>
+          <div className="relative">
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden p-2">
+              <div id="map" className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-xl overflow-hidden">
+                <Map />
+              </div>
+            </div>
+          </div>
+        </div>
 
-        {isClient && <Map />}
-
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16 grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {locations.map((location, index) => (
             <div 
               key={index} 
-              className={`bg-white rounded-lg shadow-lg overflow-hidden relative ${!location.isActive ? 'opacity-75 grayscale' : ''}`}
+              className={`bg-white rounded-lg shadow-lg overflow-hidden relative flex flex-col h-full ${!location.isActive ? 'opacity-75 grayscale' : ''}`}
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >
-              {(location.dropService || location.ecoDryers || !location.isActive) && (
+              {!location.isActive && (
                 <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
-                  {!location.isActive && (
-                    <div className="bg-gray-800 text-center text-white text-xs font-medium px-3 py-2 rounded-full shadow-lg inline-block">
-                      Prochainement
-                    </div>
-                  )}
+                  <div className="bg-gray-800 text-center text-white text-xs font-medium px-3 py-2 rounded-full shadow-lg inline-block">
+                    Prochainement
+                  </div>
                   {location.dropService && (
                     <div className="drop-shadow-lg">
                       <div className="relative">
                         <img
                           src="/hyperlaverie/badge-drop.jpeg"
                           alt="Drop Service"
-                          style={{ width: "4rem", height: "4rem", borderRadius: "22px", }}  
+                          style={{ width: '4rem', height: '4rem', borderRadius: '22px' }}
                         />
                       </div>
                     </div>
@@ -204,48 +211,50 @@ const Locations = () => {
                   )}
                 </div>
               )}
+
               <Swiper
                 modules={[SwiperNavigation, Pagination]}
                 navigation
                 pagination={{ clickable: true }}
-                className="rounded-lg overflow-hidden shadow-xl"
+                className="rounded-lg overflow-hidden shadow-xl h-64 w-full"
+                style={{ height: '256px' }}
               >
                 {location.images.map((image, imageIndex) => (
-                  <SwiperSlide key={imageIndex}>
+                  <SwiperSlide key={imageIndex} className="h-full w-full">
                     <img
                       src={image}
                       alt={`${location.name} ${imageIndex + 1}`}
-                      className="w-full h-64 object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-primary">{location.name}</h3>
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-start">
-                    <MapPin className="h-5 w-5 text-secondary mt-1" />
-                    <div className="ml-2">
-                      {location.address.map((line, i) => (
-                        <p key={i}>{line}</p>
-                      ))}
+
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold text-primary">{location.name}</h3>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-start">
+                      <MapPin className="h-5 w-5 text-secondary mt-1" />
+                      <div className="ml-2">
+                        {location.address.map((line, i) => (
+                          <p key={i}>{line}</p>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="h-5 w-5 text-secondary" />
-                    <span className="ml-2">7h/22H - 7j/7</span>
-                  </div>
-                  <p className="text-gray-600">{location.machines}</p>
-                  {location.dropService && (
-                    <div className="mt-3 p-3 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-primary font-medium">
-                        Service Drop disponible : déposez votre linge et récupérez-le propre et plié !
-                      </p>
+                    <div className="flex items-center">
+                      <Clock className="h-5 w-5 text-secondary" />
+                      <span className="ml-2">7h/22H - 7j/7</span>
                     </div>
-                  )}
-                  {!location.dropService && (
-                    <div className="h-[64px]"></div>
-                  )}
+                    <p className="text-gray-600">{location.machines}</p>
+                    {location.dropService && (
+                      <div className="mt-3 p-3 bg-blue-50 rounded-lg">
+                        <p className="text-sm text-primary font-medium">
+                          Service Drop disponible : déposez votre linge et récupérez-le propre et plié !
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <div className="mt-4">
                   <a
