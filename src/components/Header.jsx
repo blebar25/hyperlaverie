@@ -74,13 +74,13 @@ const Header = () => {
 
           {/* Menu burger pour mobile */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100/10 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6 text-primary" />
             ) : (
-              <Menu className="h-6 w-6 text-primary" />
+              <Menu className={`h-6 w-6 ${isScrolled ? 'text-primary' : 'text-white'}`} />
             )}
           </button>
 

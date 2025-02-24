@@ -39,10 +39,10 @@ const Services = () => {
             Profitez d'un service de qualité, rapide, abordable et sécurisé, idéal pour les particuliers et professionnels
           </p>
         </div>
-        <div className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:grid-flow-row md:auto-rows-fr">
           {/* Premier service */}
           <div 
-            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow md:col-span-1 h-full flex flex-col"
             data-aos="fade-up"
             data-aos-delay={0}
           >
@@ -55,7 +55,7 @@ const Services = () => {
 
           {/* Deuxième service */}
           <div 
-            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow md:col-span-1 h-full flex flex-col"
             data-aos="fade-up"
             data-aos-delay={100}
           >
@@ -65,7 +65,7 @@ const Services = () => {
             <h3 className="mt-3 sm:mt-4 text-lg sm:text-xl font-semibold text-gray-900">{services[1].title}</h3>
             <p className="mt-2 text-sm sm:text-base text-gray-600">{services[1].description}</p>
             {services[1].badge && (
-              <span className="inline-block mt-3 px-3 py-1 bg-primary text-white text-xs sm:text-sm rounded-full">
+              <span className="inline-block mt-3 px-3 py-1 bg-primary text-white text-xs sm:text-sm rounded-full w-fit">
                 {services[1].badge}
               </span>
             )}
@@ -73,7 +73,7 @@ const Services = () => {
 
           {/* Troisième service */}
           <div 
-            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+            className="relative p-4 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col col-span-1 md:col-span-2 lg:col-span-1 md:mx-auto md:w-[calc(50%-1rem)] lg:mx-0 lg:w-auto"
             data-aos="fade-up"
             data-aos-delay={200}
           >

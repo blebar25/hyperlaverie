@@ -122,7 +122,7 @@ const Contact = () => {
             </div>
 
             <div 
-              className="bg-gradient-to-br from-white to-gray-50 p-4 sm:p-6 md:p-8 rounded-xl shadow-xl border border-gray-100 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 floating-card"
+              className="bg-gradient-to-br from-white to-gray-50 p-4 sm:p-6 md:p-8 rounded-xl shadow-xl border border-gray-100 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 floating-card sm:col-span-2 lg:col-span-1 sm:mx-auto sm:w-[calc(50%-1rem)] lg:mx-0 lg:w-auto"
               data-aos="flip-left"
               data-aos-delay="600"
               data-aos-duration="1000"
