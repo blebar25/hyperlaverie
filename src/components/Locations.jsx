@@ -51,9 +51,16 @@ const locations = [
     coordinates: [49.9200158, 2.3002756],
     googleMapsUrl: 'https://www.google.com/maps/place/Centre+commercial+Carrefour+Amiens/@49.9200158,2.3002756,17z/data=!3m1!4b1!4m6!3m5!1s0x47e786bd0001e2c5:0xcfdfff8fb015f359!8m2!3d49.9200158!4d2.3028505!16s%2Fg%2F11clgksy85?entry=ttu',
     images: [
-      'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&q=80'
+      '/hyperlaverie/images/Amiens/Amiens_1.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_2.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_3.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_4.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_5.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_6.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_7.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_8.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_9.jpeg',
+      '/hyperlaverie/images/Amiens/Amiens_10.jpeg'
     ],
     dropService: true,
     isActive: false
