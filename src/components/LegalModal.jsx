@@ -33,12 +33,12 @@ const LegalModal = ({ isOpen, onClose }) => {
             <section className="mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold text-[#004E9F] mb-3 sm:mb-4">1. Informations légales</h2>
               <div className="prose max-w-none text-gray-600 text-sm sm:text-base space-y-2">
-                <p><strong>Raison sociale :</strong> Hyperlaverie</p>
-                <p><strong>Forme juridique :</strong> SAS</p>
-                <p><strong>Siège social :</strong> [Adresse à compléter]</p>
-                <p><strong>SIRET :</strong> [Numéro SIRET à compléter]</p>
-                <p><strong>Capital social :</strong> [Montant à compléter]</p>
-                <p><strong>Directeur de la publication :</strong> [Nom à compléter]</p>
+              <p><strong>Raison sociale :</strong> HYPERLAVERIE HOLDING</p>
+                <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
+                <p><strong>Siège social :</strong> 7 RUE BENJAMIN FRANKLIN, 75016 PARIS</p>
+                <p><strong>SIRET :</strong> 91335719000028</p>
+                <p><strong>Capital social :</strong> 10 000,00 €</p>
+                <p><strong>Directeur de la publication :</strong> Jacques Gabison</p>
                 <p><strong>Contact :</strong> lelavoir26@gmail.com</p>
               </div>
             </section>
@@ -46,22 +46,24 @@ const LegalModal = ({ isOpen, onClose }) => {
             <section className="mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold text-[#004E9F] mb-3 sm:mb-4">2. Hébergement</h2>
               <div className="prose max-w-none text-gray-600 text-sm sm:text-base space-y-2">
-                <p><strong>Hébergeur :</strong> [Nom de l'hébergeur]</p>
-                <p><strong>Adresse :</strong> [Adresse de l'hébergeur]</p>
+              Ce site est hébergé par Hostinger International Ltd
+                    Adresse : 61 Lordou Vironos Street, 6023 Larnaca, Chypre
+                    Site web : https://www.hostinger.fr
+                    Téléphone : +33 1 76 54 41 25
               </div>
             </section>
 
             <section className="mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold text-[#004E9F] mb-3 sm:mb-4">3. Propriété intellectuelle</h2>
               <div className="prose max-w-none text-gray-600 text-sm sm:text-base">
-                <p>L'ensemble du contenu du site Hyperlaverie (logo, textes, graphiques, images, photos, etc.) est la propriété exclusive de Hyperlaverie ou de ses partenaires. Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord exprès par écrit d'Hyperlaverie.</p>
+              <p>L'ensemble du contenu du site Hyperlaverie (logo, textes, graphiques, images, photos, etc.) est la propriété exclusive de HYPERLAVERIE HOLDING ou de ses partenaires. Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans l'accord exprès par écrit d'HYPERLAVERIE HOLDING.</p>
               </div>
             </section>
 
             <section className="mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl font-semibold text-[#004E9F] mb-3 sm:mb-4">4. Responsabilité</h2>
               <div className="prose max-w-none text-gray-600 text-sm sm:text-base">
-                <p>Hyperlaverie s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, dont elle se réserve le droit de corriger le contenu à tout moment et sans préavis. Hyperlaverie ne peut toutefois garantir l'exactitude, la précision ou l'exhaustivité des informations mises à la disposition sur ce site.</p>
+              <p>HYPERLAVERIE HOLDING s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site, dont elle se réserve le droit de corriger le contenu à tout moment et sans préavis. Hyperlaverie ne peut toutefois garantir l'exactitude, la précision ou l'exhaustivité des informations mises à la disposition sur ce site.</p>
               </div>
             </section>
           </div>
